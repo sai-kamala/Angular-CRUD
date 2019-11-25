@@ -1,0 +1,9 @@
+<ul *ngFor = "let list of total_list; let i=index">
+<div *ngIf="list !== null">
+<span><input type="checkbox" value="ch1" (change)="checkStrike($event)"></span>    
+<li>{{list.input}}</li>
+<span><button value="DEL" onClick="deleteRow(i)">DELETE</button></span>
+</div>
+</ul>
+
+<!--[ngclass]="{'strike':checkVal === 'true'}" -->

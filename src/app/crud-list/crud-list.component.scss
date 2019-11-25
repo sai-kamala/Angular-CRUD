@@ -1,0 +1,11 @@
+ul{
+    padding: 0;
+}
+ul li{
+    list-style: none;
+    display: inline-block;
+    min-width: 148px;
+}
+li.strike{
+    text-decoration: line-through;
+}
