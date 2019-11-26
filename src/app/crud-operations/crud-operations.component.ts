@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { isNgTemplate } from '@angular/compiler';
 
 @Component({
   selector: 'app-crud-operations',
@@ -7,11 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CRUDOperationsComponent implements OnInit {
 itemList:any=[];
+item:any={};
   constructor() { }
 
   ngOnInit() {
   }
-  getData(item:any){
-    this.itemList.push(item);
+  getData(e){
+    this.item=e;
+    if(this.item !== null)
+    this.itemList.push(this.item);
+  }
+  getCheckValue(markObj){
+    for(let i=0;i<this.itemList.length;i++){
+      if(this.itemList[i].id === markObj.id)  
+      this.itemList[i].check = markObj.checkVal;
+      }
+  }
+  deleteitem(id){
+    this.itemList=this.itemList.filter(function(value){
+    return id != value.id;
+    });
   }
 }

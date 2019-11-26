@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { empty } from 'rxjs';
+import { UUID } from 'angular2-uuid';
 
 @Component({
   selector: 'app-crud-input',
@@ -9,6 +9,7 @@ import { empty } from 'rxjs';
 export class CRUDInputComponent implements OnInit {
 // item:any;
 inputItem:object = {input:''};
+addedVal:any;
 @Output() data:EventEmitter<any> = new EventEmitter();
   constructor() { }
 
@@ -16,8 +17,10 @@ inputItem:object = {input:''};
   }
   addRow(){
     // this.inputItem = {input:this.item};
-    if(this.inputItem !== null)
-      this.data.emit(this.inputItem);    
+    this.addedVal = this.inputItem;
+    this.inputItem['id']=UUID.UUID();
+    if(this.addedVal !== null)
+      this.data.emit(this.addedVal);    
     this.inputItem = {};
   }
 }
