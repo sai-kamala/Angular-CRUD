@@ -8,6 +8,7 @@ import { isNgTemplate } from '@angular/compiler';
 })
 export class CRUDOperationsComponent implements OnInit {
 itemList:any=[];
+filteredList=[];
 item:any={};
   constructor() { }
 
@@ -17,6 +18,7 @@ item:any={};
     this.item=e;
     if(this.item !== null)
     this.itemList.push(this.item);
+    this.filteredList.push(this.item);
   }
   getCheckValue(markObj){
     for(let i=0;i<this.itemList.length;i++){
@@ -28,5 +30,27 @@ item:any={};
     this.itemList=this.itemList.filter(function(value){
     return id != value.id;
     });
+  }
+  doCheckFilter(checkedObj){
+    var striked_list=[];
+    if(checkedObj.check1 == true){
+      for(let i=0; i<this.filteredList.length;i++){   
+      if(this.filteredList[i].check == true)
+      striked_list.push(this.filteredList[i]);
+      }
+      this.itemList = striked_list;
+    }
+    else
+      this.itemList = this.filteredList;
+    // if(checkedObj.check2 == true){
+    //   var unstriked_list=[];
+    //   for(let i=0; i<this.filteredList.length;i++){   
+    //     if(this.filteredList[i].check == false)
+    //     unstriked_list.push(this.filteredList[i]);
+    //     }  
+    //     this.itemList = unstriked_list;
+    // }
+    // else
+    //   this.itemList = this.filteredList;
   }
 }

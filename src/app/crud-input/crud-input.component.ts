@@ -9,18 +9,25 @@ import { UUID } from 'angular2-uuid';
 export class CRUDInputComponent implements OnInit {
 // item:any;
 inputItem:object = {input:''};
-addedVal:any;
+checkedObj={};
 @Output() data:EventEmitter<any> = new EventEmitter();
+@Output() checkFilter:EventEmitter<any>= new EventEmitter();
   constructor() { }
-
   ngOnInit() {
   }
   addRow(){
-    // this.inputItem = {input:this.item};
-    this.addedVal = this.inputItem;
+    if(this.inputItem !== null) 
     this.inputItem['id']=UUID.UUID();
-    if(this.addedVal !== null)
-      this.data.emit(this.addedVal);    
+    this.data.emit(this.inputItem);   
     this.inputItem = {};
+  }
+  triggerCheck(e){
+    let value;
+    if(e.target.value == "ch1")
+  var checked1 = e.target.checked;
+  else
+  var checked2 = e.target.checked;
+  this.checkedObj={check1:checked1, check2:checked2}
+  this.checkFilter.emit(this.checkedObj);
   }
 }
