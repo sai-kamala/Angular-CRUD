@@ -1,6 +1,7 @@
 <form>
   <input type="text" value="text" name="txt" [(ngModel)] = "inputItem.input">
   <button value="add" (click)="addRow()">ADD</button>
-  <span><input type="checkbox" value="ch1" (change)="triggerCheck($event)">Striked</span>
-  <span><input type="checkbox" value="ch2" (change)="triggerCheck($event)">Un striked</span>
+  <span><input type="radio" name="radioBtn" value="ch1" [checked]= "false" (change)="onRadioChange($event)">Striked</span>
+  <span><input type="radio" name="radioBtn" value="ch2" [checked]= "false" (change)="onRadioChange($event)">Un striked</span>
+  <span><input type="radio" name="radioBtn" value="none" [checked]= "false" (change)="onRadioChange($event)">None</span>
 </form>

@@ -1,7 +1,9 @@
 <ul *ngFor = "let list of total_list">
 <span><input type="checkbox" value="ch1" name="ch1" (change)="checkStrike($event , list.id)"></span>    
-<li [ngClass]="{'strike':list.check === true}">{{list.input}}</li>
-<span><button type="button" value="EDIT" (click)="editRow(list.id)">EDIT</button></span>
+<li ><input type='text' *ngIf="isEdit == list.id" (change)="savedata($event)" value= "{{list.input}}">
+   <span [ngClass]="{'strike':list.check === true}" *ngIf="isEdit !=list.id">{{list.input}}</span></li>
+<span><button type="button" value="EDIT" (click)="editRow(list)">EDIT</button></span>
 <span><button type="button" value="DEL" (click)="deleteRow(list.id)">DELETE</button></span>
+<span><button type="button" value="save" *ngIf="isEdit == list.id" (click)="saveRow(list)">SAVE</button></span>
 </ul>
 

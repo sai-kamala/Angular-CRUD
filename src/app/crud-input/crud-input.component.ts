@@ -9,9 +9,8 @@ import { UUID } from 'angular2-uuid';
 export class CRUDInputComponent implements OnInit {
 // item:any;
 inputItem:object = {input:''};
-checkedObj={};
 @Output() data:EventEmitter<any> = new EventEmitter();
-@Output() checkFilter:EventEmitter<any>= new EventEmitter();
+@Output() radioCheck:EventEmitter<any>= new EventEmitter();
   constructor() { }
   ngOnInit() {
   }
@@ -21,13 +20,8 @@ checkedObj={};
     this.data.emit(this.inputItem);   
     this.inputItem = {};
   }
-  triggerCheck(e){
-    let value;
-    if(e.target.value == "ch1")
-  var checked1 = e.target.checked;
-  else
-  var checked2 = e.target.checked;
-  this.checkedObj={check1:checked1, check2:checked2}
-  this.checkFilter.emit(this.checkedObj);
+  onRadioChange(e){ 
+    let checkValue = e.target.value;
+    this.radioCheck.emit(checkValue);
   }
 }

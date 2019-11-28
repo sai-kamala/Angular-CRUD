@@ -10,6 +10,8 @@ export class CRUDListComponent implements OnInit {
   @Output() markObj = new EventEmitter();
   @Output() deleteId = new EventEmitter();
   checkVal:Boolean = false;
+  isEdit;
+  saveVal;
   constructor() { }
   ngOnInit() {
   }
@@ -20,14 +22,25 @@ export class CRUDListComponent implements OnInit {
   //     return i != value.id;
   // });
   
-  this.deleteId.emit(i)
+  this.deleteId.emit(i);
   }
-  // editRow(i){
-  //   var item=this.total_list.find(list => list.id == i);
-  //   this.
-  // }
+  editRow(i){
+    console.log(i);
+    //var item=this.total_list.find(list => list.id == i);
+    this.isEdit=i.id;
+    
+  }
   checkStrike(e,i){
-    let outputObj={checkVal:e.target.checked, id:i}
+    let outputObj={check:e.target.checked, id:i}
     this.markObj.emit(outputObj);
+  }
+  savedata(e){
+    this.saveVal = e.target.value;
+  }
+  saveRow(i){
+  let savedInput;
+  i.input = this.saveVal;
+  this.isEdit='';
+  savedInput.emit(i);
   }
 }
